@@ -1,0 +1,23 @@
+
+.axis {
+  font: 11px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #DCDADA;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.bar {
+  fill: #DCDADA;
+}
+
+text {
+  fill: #fff;
+}

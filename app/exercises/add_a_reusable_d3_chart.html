@@ -1,0 +1,199 @@
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Lyme Disease in CA</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name="description" content="web mapping with leaflet and d3 session">
+    <meta name="author" content="@BerkeleyGIF">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="cleartype" content="on">
+
+
+    <!-- *********************************************************************
+     Loading Google fonts
+    **************************************************************************-->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:700,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,300italic' rel='stylesheet' type='text/css'>
+
+
+    <!-- *********************************************************************
+     Adding stylesheets to the document HEAD makes pages appear to be loading faster.
+     https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Tips_for_authoring_fast-loading_HTML_pages
+    **************************************************************************-->
+
+    <!-- Load Leaflet Stylesheet -->
+    <link rel="stylesheet" href="js/lib/leaflet/leaflet.css" />
+
+    <!-- Load Leaflet Draw Stylesheet -->
+    <link rel="stylesheet" href="js/lib/leaflet-draw/leaflet.draw.css" />
+    
+    <!-- Load Leaflet Geocoder Stylesheet -->
+    <link rel="stylesheet" href="js/lib/leaflet-control-geocoder/Control.Geocoder.css" />
+    
+    <!-- Load Application Stylesheets-->
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/chart.css">
+    <link rel="stylesheet" href="css/tipsy.css">
+
+  </head>
+
+  <body>
+  
+  <main role="main">
+    <header>
+      <h1>Lyme Disease in California</h1>
+      <a class="home-icon" href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="16px" id="Layer_1" style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16" width="16px" xml:space="preserve"><path d="M15.45,7L14,5.551V2c0-0.55-0.45-1-1-1h-1c-0.55,0-1,0.45-1,1v0.553L9,0.555C8.727,0.297,8.477,0,8,0S7.273,0.297,7,0.555  L0.55,7C0.238,7.325,0,7.562,0,8c0,0.563,0.432,1,1,1h1v6c0,0.55,0.45,1,1,1h3v-5c0-0.55,0.45-1,1-1h2c0.55,0,1,0.45,1,1v5h3  c0.55,0,1-0.45,1-1V9h1c0.568,0,1-0.437,1-1C16,7.562,15.762,7.325,15.45,7z"/></svg>
+      </a>
+    </header>
+
+    <section class="dataviz">
+
+      <!-- Map panel -->
+      <div class="map" id="map"></div>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+
+        <div class="info-container">
+
+          <div class="ticks">
+            <div class="header">
+              <div class="tick-symbol"></div>
+              <h5>Tick Collection Locations</h5>
+            </div>
+          </div>
+
+          <div class="county">
+            <div class="header">
+              <h5>CA 2014 Population Density <span class="heading-minor">(per square mile)</span></h5>
+            </div>            
+            <div class="legend"></div>
+          </div>
+          <div>
+            <p class="info">Hover over a county</p>
+          </div>
+        </div>
+
+        <div class="chart-container">
+
+          <div class="chart-header">
+            <h5>Incidence Rate of Lyme Disease in 
+              <span class="heading-location">California</span> 
+              <span class="heading-minor">(per 100,000 people)</span>
+            </h5>           
+          </div>
+
+          <div class="chart-canvas total">
+          </div>
+          <div class="tooltip"></div>
+
+          <div class="twocol">
+            <div class="chart-canvas male"></div>
+            <div class="chart-canvas female"></div>
+          </div>
+          
+        </div>
+      </div>
+
+    </section>
+    
+    <!-- Content -->
+    <section class="container">
+      <article>
+        <h3>What is Lyme disease? </h3>
+        <p>It is a potentially serious infection caused by a corkscrew-shaped bacterium called a spirochete that is typically transmitted to humans and other animals through ticks. It can affect any organ of the body, including the brain and nervous system, muscles and joints, and the heart.</p>
+        <h3>What are the symptoms?</h3>
+        <p>Early symptoms are often flu-like and may clear up without treatment. If left untreated, symptoms can progress to include joint swelling, numbness, muscle weakness, heart problems and cognitive difficulties. Some people get a distinctive bull's-eye-shaped rash around the site of the tick bite.</p>
+        <h3>Why is it so hard to diagnose?</h3>
+        <p>First off, many people don't even know they were bitten by a tick. The symptoms can mimic other conditions, and diagnostic tests are typically unreliable. Also, ticks can carry more than one disease, and new disease-causing pathogens are being discovered.</p>
+        <h3>What kind of ticks carry it?</h3>
+        <p>In California, the culprit is the Western black-legged tick, with the primary carrier being the western gray squirrel. The poppy-seed-size nymph and the larger adult female tick are considered most important in transmitting disease.</p>
+        <h3>What are the best ways to avoid getting infected?</h3>
+        <p> Wear protective clothing and repellent in potentially tick-infested areas, check yourself and pets for ticks, and remove them immediately if spotted using recommended techniques. Most tick bites don't cause disease, but seek medical help if you experience any symptoms.</p>
+        <p>For more information:</p>
+        <ul>
+          <li><a href="http://www.cdph.ca.gov/healthinfo/discond/Pages/LymeDisease.aspx">California Department of Public Health</a></li>
+          <li><a href="http://www.cdc.gov/lyme">U.S. Centers for Disease Control and Prevention</a></li>
+          <li><a href="http://www.bayarealyme.org">Bay Area Lyme Foundation</a></li>
+        </ul>
+    <article>
+  </section>
+  <section class="container">
+    <h4>Data Sources</h4>
+    <ul>
+      <li><strong>Population Density :</strong> Annual Estimates of the Resident Population: April 1, 2010 to July 1, 2014. <a href="http://census.gov/">U.S. Census Bureau</a></li>
+      <li><strong>Lyme Disease Incidence Rates :</strong> Infectious Disease Cases by County  Year  and Sex  2001-2014. <a href="https://chhs.data.ca.gov/">California Department of Public Health</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p><i>Spatial Data Science Bootcamp 2016</i></p>
+  </footer>
+  </main>
+
+
+    <!-- *********************************************************************
+     Putting Javascript files towards bottom of the body is a standard recommendation 
+     for speeding up the apparent load time of your page
+     https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Tips_for_authoring_fast-loading_HTML_pages
+    **************************************************************************-->
+    
+    <!-- Load jquery from CDN -->
+    <script   src="//code.jquery.com/jquery-2.2.1.js"   integrity="sha256-eNcUzO3jsv0XlJLveFEkbB8bA7/CroNpNVk3XpmnwHc="   crossorigin="anonymous"></script>
+    
+    <!-- Load Leaflet Javascript -->
+    <script src="js/lib/leaflet/leaflet.js"></script>
+
+    <!-- Load TopoJSON from CDN -->
+    <!-- TopoJSON is an extension of GeoJSON that encodes topology -->
+    <!-- https://github.com/mbostock/topojson/wiki -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.20/topojson.js"></script>
+
+    <!-- Load chroma.js from CDN -->
+    <!-- JavaScript library for all kinds of color manipulations -->
+    <!-- http://gka.github.io/chroma.js/ -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/chroma-js/0.5.9/chroma.min.js"></script>
+
+    <!-- Javascript code for extending Leaflet's L.geoJson layer to read topojson files -->
+    <script>
+      // Copyright (c) 2013 Ryan Clark
+      // https://gist.github.com/rclark/5779673
+      L.TopoJSON = L.GeoJSON.extend({
+        addData: function(jsonData) {    
+          if (jsonData.type === "Topology") {
+            for (key in jsonData.objects) {
+              geojson = topojson.feature(jsonData, jsonData.objects[key]);
+              L.GeoJSON.prototype.addData.call(this, geojson);
+            }
+          }    
+          else {
+            L.GeoJSON.prototype.addData.call(this, jsonData);
+          }
+        }  
+      });
+    </script>
+
+    <!-- Load Leaflet Geocoder Javascript -->
+    <script src="js/lib/leaflet-control-geocoder/Control.Geocoder.js"></script>
+
+    <!-- Load Turf Javascript -->
+    <script src="js/lib/turf.min.js"></script>
+
+    <!-- Load D3 from CDN -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.js"></script>
+
+    <!-- Javascript code for your app goes in between script tags below -->
+    <script src="js/bar_chart.js"></script>
+    <script src="js/add_a_reusable_d3_chart.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="remark,remarkjs,markdown,slideshow,presentation" />
+    <meta name="description" content="A simple, in-browser, markdown-driven slideshow tool." />
+    <title>Leaflet and D3</title>
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="assets/style.css"></link>
+    <style type="text/css">
+    .remark-code, .remark-inline-code {
+      font-family: "Inconsolata", "Courier";
+    }
+    #slide-tasks ul {
+      list-style-type: decimal;
+      font-size: 1.3em;
+    }
+    #slide-task2 img {
+      width: 45%;
+      margin-left: 20%;
+    }
+    .ex {
+      background-color: #E3E7F0;
+      color: black;
+      padding-left: 5px;
+    }
+    #slide-function .left-column {
+      width: 50%;
+    }
+    #slide-function .right-column {
+      width: 50%;
+    }
+    #slide-codemin code {
+      font-size: 0.7em;
+    }
+    #slide-codemax code {
+      margin-top: 2em;
+      font-size: 2em;
+    }
+    #slide-codemax2 code {
+      font-size: 1.7em;
+      margin: 0em;
+    }
+    #slide-codemax2 pre {
+      margin: 0em;
+    }
+    #slide-nestedlist ul {
+      font-size: 1.2em;
+    }
+    #slide-nestedlist ul li ul{
+      font-size: 1.2rem;
+    }
+    #slide-pushup h2 {
+      font-size: 1.8em;
+      margin-top: 0;
+    }
+    #slide-pushup ul {
+      margin-top: 0;
+      font-size: 1.1em;
+    }
+    #slide-databinding #circle {
+      width: 40px;
+      height: 30px;
+      top: 66%;
+      right: 48%;
+      opacity: 0.3;
+      position: absolute;
+      border: 10px solid red;
+      -moz-border-radius: 50px;
+      -webkit-border-radius: 50px;
+      border-radius: 50px;
+    }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+name: agenda
+layout: true
+class: left
+background-image: url(assets/logos.png)
+---
+
+#Web Apps with Leaflet and D3
+<br>
+#### Shruti Mukhtyar 
+@mapchitra
+#### Spatial Data Science Bootcamp
+#### March 25, 2016
+
+
+---
+name: agenda
+## Before we start
+
+No VM, we will use Windows for this. 
+
+1. Download and extract bootcamp repo from GitHub.
+  ```xml
+    https://github.com/berkeley-gif/bootcamp
+  ```
+
+2. Open the command prompt. Navigate to `bootcamp folder`.
+
+  ```python
+
+    >cd \Documents\Bootcamp\Day_3\Web_App_with_Leaflet_and_d3
+
+    >C:\Python27\ArcGIS10.3\python -m SimpleHTTPServer
+
+  ```
+
+3. Open Chrome browser. Type in address `localhost:8000` in the URL bar.
+
+???
+
+<!--NEXT SLIDE -->
+---
+
+name: review
+
+##Quick Review
+
+- Basic Tools - Code Editor & Chrome Developer Tools
+- Quick Review of Client & Server
+- HTML
+- CSS
+- DOM
+- JavaScript
+- SVG
+
+
+<!--NEXT SLIDE -->
+---
+name: tools
+
+###Code Editor 
+
+- Sublime Text, Atom, PyCharm, Vim, Notepad++, IDLE, Gedit, TextMate
+- Syntax highlighting, indentation, autocomplete, bracket matching
+- Run interpreters, debuggers
+
+###Browser
+
+- Developer Tools - press `Ctrl+Shift+I` (or `F12`) in Chrome
+- Emulator - see how pages look at different breakpoints (screen sizes)
+- More info on Chrome Developer tools [here](https://developer.chrome.com/devtools)
+
+
+<!--NEXT SLIDE -->
+---
+
+name: task2
+
+##Quick Review of Client & Server
+
+![](assets/client-server.gif)
+
+- HTTP, language of the web
+- Browser sends HTTP GET Request. Server sends response for each request with content and/or status message.
+- Open Network Panel on Chrome Developer Tools. Reload the page to see network acitivity
+- [.small[How Does the Web Work?]](http://www.theodinproject.com/web-development-101/how-does-the-web-work)
+
+???
+When a link is clicked, the browser creates an .em[HTTP Get Request] that is sent to the server. Server responds. Browser displays the page. Sees that it needs a few more things - e.g. images, fonts, other files. Browser sends new a GET request for each item. Server sends response for each request with status code (200 - found, 304 - retrieving from browser cache, 404 - not found, 500 - server error )
+
+
+<!--NEXT SLIDE -->
+---
+
+name: html
+
+###Hyper Text Markup Language (HTML)
+
+- Role &raquo; Describes content (not presentation) 
+- Tags - block and inline
+  ```xml
+    <div></div>
+    <ul>
+      <li><a href="gif.berkeley.edu">Home Page</a></li>
+      <li><a href="gif.berkeley.edu/people">Staff</a></li>
+    </ul>
+  ```
+- Classes and ID's 
+  ```xml
+    <div id="map"></div>
+    <div class="chart"></div>
+  ```
+- Properties and Attributes 
+  ```xml
+    <div id="map" style="height:500px;"></div>
+  ```
+- [.small[HTML Reference]](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+
+
+<!--NEXT SLIDE -->
+---
+
+##Cascading Style Sheet (CSS)
+
+- Role &raquo; CSS is the presentation of the content
+- Selectors, properties, and values
+- Properties and Attributes
+  ```xml
+    #map {
+      height: 500px;
+    }
+    h1 {
+      font-family: "Helvetica", "sans-serif";
+      font-weight: bold;
+      background-color: #000;
+    }
+    .chart {
+      float: left;
+    }
+  ```
+- [.small[CSS Reference]](https://developer.mozilla.org/en-US/docs/Web/CSS)
+
+
+---
+name: dom
+
+
+##Document Object Model (DOM)
+
+- Structured representation of the document (a tree) created by the browser
+
+- HTML you write is parsed by the browser and turned into the DOM
+
+- Programming interface for HTML and SVG documents
+
+- JavaScript manipulates the DOM
+
+- [.small[DOM in simple English, please!]](https://css-tricks.com/dom/)
+
+---
+
+##Conceptual web page
+
+  ```xml
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <!-- head content -->
+  </head>
+  <body>
+      <h1>Header text here</h1>
+      <div>
+          <h2>Subheader text here</h2>
+          <p>Paragraph text here</p>
+      </div>
+      <div>
+          <p>Another paragraph here</p>
+      </div>
+      <script>
+          <!-- JavaScript content -->
+      </script>
+  </body>
+  </html>
+  ```
+---
+
+## The DOM for conceptual web page
+
+![](assets/dom_model.jpg)
+
+---
+name: nestedlist
+
+##JavaScript
+
+- "Easy to learn, hard to master"
+
+- Role &raquo; Creating interaction
+- Interpreted by your browser
+- Asychronous (code executes in background after client-browser recieves data from server)
+- Get familiar with
+  - Working with json objects
+  - Array functions (forEach, filter, map)
+  - Method chaining, Callbacks, Closures, Modules
+- [.small[JavaScript Reference]](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+
+---
+name: nestedlist
+
+##Resources
+
+- If you are going to develop medium to large scale web apps learn more about using front-end development tools. 
+    - [Getting Started Web Development Guide](http://jlord.us/blog/getting-started.html)
+    - [Front-end Handbook](https://www.gitbook.com/book/frontendmasters/front-end-handbook/details)
+- Google Search
+    - Favor results from Stack Exchange, Mozilla Developer Network, CSS-Tricks
+- [caniuse](caniuse.com) - Check which browsers support what features
+- Web Design
+    - [A List Apart](http://alistapart.com/)
+    - [Webdesigner News](http://www.webdesignernews.com/) - curated stories
+- Courses for all levels on CodeAcademy, Udacity, Coursera, etc.
+- [Eloquent Javascript](eloquentjavascript.net)
+- [Egghead.io](https://egghead.io/) - Bite size web dev video training
+- [Frontend Masters](https://frontendmasters.com/) - all levels, paid subscription
+- <small>Lot's more on the web!</small>
+
+<!--NEXT SLIDE -->
+---
+name: codemin
+
+
+##JSON
+
+```javascript
+var obj = {
+  "firstName": "John",
+  "lastName": "Smith",
+  "isAlive": true,
+  "age": 25,
+  "address": {
+    "streetAddress": "21 2nd Street",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10021-3100"
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "office",
+      "number": "646 555-4567"
+    }
+  ],
+  "children": ['Jack','Jill','Bo'],
+  "spouse": null
+}
+```
+
+<!--NEXT SLIDE -->
+---
+name: codemin
+
+##GeoJSON
+
+  ```javascript
+  var obj = 
+  { "type": "FeatureCollection",
+      "features": [
+        { "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [102.0, 0.5] },
+          "properties": {"prop0": "value0"}
+         },
+        { "type": "Feature",
+           "geometry": {
+             "type": "Polygon",
+             "coordinates": [
+               [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0],
+                 [100.0, 1.0], [100.0, 0.0] ]
+               ]
+            },
+           "properties": {
+             "prop0": "value0",
+             "prop1": {"this": "that"}
+            }
+        }
+      ]
+  }
+  ```
+- [.small[GeoJSON Specification]](http://geojson.org/geojson-spec.html), [.small[geojson.io]](http://geojson.io/), [.small[Validate your geojson]](http://geojsonlint.com/), [.small[Mapshaper]](http://mapshaper.org/)
+---
+
+name: nestedlist
+
+##Leaflet
+
+- Lightweight, simple & flexible open source JavaScript mapping library
+
+- Created by [Vladimir Agafonkin](http://agafonkin.com/en/). Great speaker, checkout some of his talks on Leaflet
+
+- Mobile-friendly. Well documented [API](http://leafletjs.com/reference.html), huge amount of [plugins](http://leafletjs.com/plugins.html). 
+
+- Use with other JS mapping libraries (like Esri-Leaflet) or by itself. Similar libraries - OpenLayers, ModestMaps, Polymaps.
+
+- CartoDB.js and Mapbox.js libraries are built on top of Leaflet.
+
+- [Leaflet FAQ](https://github.com/Leaflet/Leaflet/blob/master/FAQ.md)
+
+---
+
+##What does it do?
+
+- Slippy maps with panning and zooming
+
+- Provides functions for converting data into map layers
+
+- Provides mouse interaction
+
+- Does not provide any data
+
+- You provide tile basemaps and data for overlays
+
+- Easy to extend with plugins
+
+
+---
+name: nestedlist
+
+##Exercises
+
+- Open command prompt in Windows. Change directory to folder containing exercises. Start a local server using Python module.
+  ```xml
+    >cd bootcamp\Day_3\Web_App_with_Leaflet_and_D3\exercises
+    >C:\Python27\ArcGIS10.3\python -m SimpleHTTPServer
+
+  ```
+- Open Chrome browser. Type `localhost:8000` into the url bar at top. You should see a list of all files in the exercises folder. Follow along on GitHub repo for instructions.
+
+- You will be working in three windows
+    - HTML file open in a Chrome browser tab
+    - GitHub repo open in a Chrome browser tab
+    - Javascript file open in a code editor, e.g. Notepad++
+
+
+---
+
+#D3
+---
+
+name: nestedlist
+
+##D3 (Data Driven Documents)
+
+- [JavaScript library](https://d3js.org/) for producing dynamic, interactive data visualizations in web browsers.
+- Makes use of the widely implemented SVG, HTML5, and CSS standards
+- Created by [Mike Bostock](https://bost.ocks.org/mike/), Vadim Ogievetsky and Jeffrey Heer (all at that time were part of the Stanford Visualization Group).
+- Very active user community in Bay Area. Checkout [Bay Area d3 User Group](http://www.meetup.com/Bay-Area-d3-User-Group/).
+- Rich ecosystem of examples showing visualization types, coding techniques [blockbuilder.org/](http://blockbuilder.org/), [bl.ocks.org/](http://bl.ocks.org/)
+- [Navigating the D3 Ecosystem](http://enjalot.github.io/talks/navd3eco/)
+- How do I learn D3.js? [Quora thread](https://www.quora.com/How-do-I-learn-D3-js)
+
+---
+
+##What does it do?
+
+- Transforms data into information
+
+- It is *not* a graphics library, it is *not* a charting library, it is a general purpose data visualization library
+
+- Heavily used in data journalism and visualization. New York Times has been the pioneer in data visualization and data journalism. 
+
+- Provides new ways to think about map mapking, communication.
+
+---
+
+##Revisiting mapping
+
+Mapping: An operation that associates each element of a given set (the domain) with one or more elements of a second set (range)
+
+![](assets/mapping.png)
+
+Any (computer) visualization problem can be described as a mapping problem. Geospatial mapping is just a subset.
+
+---
+name: codemin
+
+##SVG
+
+```xml
+<svg width="300" height="180">
+  <rect x="10" y="20" width="20" height="50" fill="blue"
+              stroke="red" stroke-width="1"/>
+  
+  <circle cx="100" cy="100" r="25" fill="red"
+              stroke="#ddd" stroke-width="5"></circle>
+              
+  <g transform="translate(5, 15)">
+    <text x="0" y="0">My graphic</text>
+  </g>
+              
+  <g transform="translate(5, 55)">
+    <!-- M: move to (jump)
+         L: line to
+         Q: curve to (quadratic) -->
+    <path d="M0,50 L50,0 Q100,0 100,50"
+      fill="none" stroke-width="3" stroke="black" />
+  </g>
+  
+  <g transform="translate(5, 105)">
+    <!-- C: curve to (cubic)
+         Z: close shape -->
+    <path d="M0,100 C0,0 25,0 125,100 Z" fill="black" />
+  </g>
+</svg>
+```
+- Play with this code on [SVG Graphic Primitives - JSFiddle](https://jsfiddle.net/mukhtyar/04m3xn4r/)
+
+???
+Where HTML has the <div> and <span> tags, SVG has the <g> tag for an arbitrary group. You’ll see <g> a lot in D3 examples. They’re great for applying styles to a group (including re-positioning the groups).
+
+The <text> tag is good for simple labels. The <path> tag is powerful but complex, it can be used for either lines or arbitrary filled-in shapes depending on the styling.
+
+---
+
+name: nestedlist
+
+##SVG v/s Canvas
+
+- HTML5 Canvas is a raster based format for drawing on the web
+  - You can draw raster graphcis with D3
+  - You can only get pixel values on click event
+  - Faster
+
+- SVG (Scalable Vector Graphics) is a vector based format for drawing on the web
+  - HTML has div and span, etc.; SVG has circle and rect, etc.
+  - SVG is a DOM for graphical elements
+  - You can attach events to SVG elements
+  - Most D3 examples work with SVG
+
+---
+
+name: pushup
+
+##Again, what is D3?
+
+- Has everything you need for visualizing complex data BUT you will not find commands like barchart, scatterplot, or piechart, or even map
+
+- Builds vizualizations (and other content) from its basic HTML5 or SVG elements (e.g. < g> , <c i r cl e > , < r e c t > , < p a th > ).
+
+- Most and foremost a DOM manipulation library (in this regard similar to jquery).
+
+- Provides  handy utilities for processing data (array, time series, geo data)
+
+- Comes with a lot of functions and methods to create mapping functions that will map your data directly to properties on html elements
+
+- Filled with algorithms (voronoi, quadtrees, circle fitting, convex hull, projections)
+
+"Automating the hard bits you already understand" as opposed to "hiding the hard bits" @andy_matuschak
+
+---
+name: nestedlist
+
+##Data Visualization
+
+- Primary uses
+  - Explanation - e.g. [Oscar Contenders](http://www.nytimes.com/interactive/2013/02/20/movies/among-the-oscar-contenders-a-host-of-connections.html?_r=1&)
+  - Exploration - R, Python, Excel, Tableau, D3 ([requires some more work](http://learnjsdata.com/))
+
+- Curated lists of data viz and data viz research
+  - [visualisingdata.com](http://www.visualisingdata.com/)
+
+- [Mike Bostock's code blocks](http://bl.ocks.org/mbostock)
+
+- For geographic visualizations
+  - d3.geo
+  - [Jason Davies](https://www.jasondavies.com/maps/), [Jason Davies Code Blocks](https://bl.ocks.org/jasondavies)
+
+---
+
+name: nestedlist
+
+##D3 - Conceptual Hurdles
+
+- Selections
+  - [How Selections Work - Mike Bostock](https://bost.ocks.org/mike/selection/)
+
+- Data binding
+  - Pairs and object and an element
+  - Keeps track of new and old objects
+  - Let's you animate differences between new and old
+  - [Thinking with joins - Mike Bostock](https://bost.ocks.org/mike/join/)
+
+<small>Next few slides adapted from [A fun, difficult intro to d3 - Tom MacWright](http://www.macwright.org/presentations/dcjq/)</small>
+
+---
+
+name: codemin
+
+##D3 Code
+
+- Search result for [d3 bar chart](https://bl.ocks.org/mbostock/3885304)
+
+- Let's try to understand this part first (selection & data binding)
+
+```javascript
+
+    var svg = d3.select("body").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    svg.append("g")
+      .attr("class", "bars")
+      .selectAll("bar")
+        .data(data)
+      .enter().append("rect")
+        .style("fill", "DCDADA")
+        .attr("x", function(d) { return xScale(d.date); })
+        .attr("width", xScale.rangeBand())
+        .attr("y", function(d) { return yScale(d.value); })
+        .attr("height", function(d) { return height - yScale(d.value); });
+
+```
+
+---
+
+name: codemax2
+
+##D3 Code
+
+- A simpler example
+
+```javascript
+
+d3.selectAll('rect')
+  .data([{val: 30}, {val: 55}, {val: 34}])
+  .enter()
+  .append('rect')
+  .attr(Height);
+
+```
+
+---
+
+name: codemax
+
+```javascript
+
+// an empty selection
+// looking for data
+
+d3.selectAll('rect')
+
+```
+
+---
+name: codemax
+
+```javascript
+
+// data, which would be bound to
+// a selection
+// simple array or array of objects
+
+.data([{value: 30}, {value: 55}, 
+            {value: 34}])
+```
+
+
+---
+
+name: codemax
+
+```javascript
+
+// for every time that we see data
+// but we do not see an element
+
+.enter()
+
+```
+
+---
+
+name: codemax
+
+```javascript
+
+// append a SVG element rect
+// and set it's height attribute 
+// to Height
+.append('rect')
+.attr(Height);
+
+```
+
+---
+
+name: databinding
+
+## What does data binding look like?
+
+- D3 adds a `__data__` property to each graphic element
+
+![](assets/data_binding_block.png)
+![](assets/data_binding_console.png)
+<div id="circle"></div>
+
+---
+
+name: codemax
+
+```javascript
+
+// d3 has a few different
+// functions that set stuff
+.text()
+.property()
+.style()
+.attr()
+
+// each takes a function
+.attr('height', function() { })
+
+```
+
+---
+
+name: codemax2
+
+```javascript
+
+// and that function gets data
+// from your .data()
+.attr('height', function(d) {
+  return d.value;
+})
+
+// also provide static values
+.attr('height', 100)
+
+// get back existing value
+var barHeight = rect.attr('height'); 
+barHeight -> 30/55/34
+
+```
+---
+
+## D3 Code
+
+- Same simple example but written slightly differently
+
+- We are now defining a new variable to hold a reference to what d3.selectAll returns
+
+- This makes it easier to work with the subselections (enter, exit, update)
+
+```javascript
+
+// this is an empty selection
+// data has been bound to empty selection
+var selection = d3.selectAll('rect')
+  .data([{value: 30}, {value: 55}, 
+                         {value: 34}]);
+
+```
+
+---
+
+name: codemax2
+
+```javascript
+
+// for each part of the data which
+// is not joined to an element in
+// the selection,
+// add an element
+selection
+  .enter()
+  .append('rect');
+
+```
+---
+
+name: codemax2
+
+```javascript
+
+// for each part of the selection
+// that is no longer in the data,
+// remove it
+selection
+  .exit()
+  .remove();
+
+```
+
+---
+
+name: codemax2
+
+```javascript
+
+// for each part of the selection,
+// update some attribute
+selection
+  .attr('height', function(d) {
+    return d.value;
+  });
+
+```
+
+Play with this code at [Simple D3 Bar Chart - blockbuilder.org](http://blockbuilder.org/mukhtyar/89e0407a1828d59c72e7)
+
+---
+
+##Making it cool - Transitions
+
+- Special type of selection 
+- Operators apply smoothly over time
+- Delays, duration, easing
+
+Play with this code at [Simple D3 Bar Chart with Transitions - blockbuilder.org](http://blockbuilder.org/mukhtyar/d29605757190f60c555a)
+
+
+
+[Working with Transitions - Mike Bostock](https://bost.ocks.org/mike/transition/)
+
+---
+
+name: nestedlist
+
+## Conceptual Hurdles
+- Selections
+  - [How Selections Work - Mike Bostock](https://bost.ocks.org/mike/selection/)
+
+- Data binding
+  - [Thinking with joins - Mike Bostock](https://bost.ocks.org/mike/join/)
+
+- D3 Axes and scales are relatively easier to understand compared to selections and joins
+
+
+
+---
+
+name: codemax2
+
+## D3 Scale
+
+```javascript
+d3.scale.linear()
+    // data comes in
+    .domain([67, 1098])
+    // representation comes out
+    //e.g. pixel width/height of svg
+    .range([0, 500]); 
+
+```
+- Use d3 helper methods to calculate domain - d3.extent, d3.max
+- Linear, ordinal, categorical and time scales
+
+---
+
+name: codemax2
+
+## Using D3 Scale
+
+```javascript
+var x = d3.scale.linear()
+          .domain([67, 1098])
+          .range([0, 500]); 
+
+x(0) //-32.49
+x(67) //0
+x(500) // 209.99
+x(1098) // 500
+```
+- Scale object is also a function
+- Calling the scale is how we translate values from one coordinate to another
+
+---
+
+## D3 Axes
+
+```javascript
+var x = d3.scale.linear()
+          .domain([67, 1098])
+          .range([0, 500]); 
+
+var xAxis = d3.svg.axis()
+  .scale(x)         // x is d3.scale.linear()
+  .orient('bottom') // the ticks go below the graph
+  .ticks(4);        // specify the number of ticks
+
+var svg = d3.select('body')
+  .append('svg')        // create an <svg> element
+    .attr('width', 300) // set its dimentions
+    .attr('height', 150);
+
+svg.append('g')            // create a <g> element
+  .attr('class', 'x axis') // specify classes
+  .call(xAxis); // add the axis
+```
+
+---
+
+name: codemax2
+
+## Using D3 Scale with geo stuff
+
+```javascript
+var width = 960,
+    height = 500;
+
+var projection = d3.geo.albersUsa()
+    .scale(1000)
+    .translate([width / 2, height / 2]);
+
+projection([-112, 34])
+//[259.40551744936477, 313.5146898982723]
+```
+- [US States Topojson with D3](http://bl.ocks.org/mbostock/4090848)
+
+---
+
+
+## Using D3 Scale with geo stuff
+Building up the mapping function
+
+```javascript
+var width = 960,
+    height = 500;
+
+var projection = d3.geo.albersUsa()
+    .scale(1000)
+    .translate([width / 2, height / 2]);
+
+//Creating a path function
+var path = d3.geo.path().projection(projection);
+
+// After getting the data
+svg.selectAll('.counties')
+  .data(counties.features)
+  .enter().append('path')
+  .attr('d', path)
+```
+- [US Counties Topojson with D3](http://bl.ocks.org/mbostock/4122298)
+---
+
+
+## D3 Layouts
+
+- Pie, Histogram, Stack, Tree, Force, Cluster, etc.
+- More at [API docs](https://github.com/mbostock/d3/wiki/Layouts)
+
+---
+
+## D3 and other libraries
+
+- Rickshaw, Highcharts, NVD3 are libraries built on top of D3
+
+- D3 and [Crossfilter](http://square.github.io/crossfilter/) (Fast Multidimensional Filtering for Coordinated Views)
+
+- Open-source tools binding D3 to R, Python
+
+- [Vega](https://github.com/vega/vega/wiki/Vega-and-D3) - higher-level visualization specification language on top of D3
+
+---
+
+## API
+
+- [California Health and Human Services Open Data Portal](https://chhs.data.ca.gov/)
+- [Berkeley Ecoengine](https://holos.berkeley.edu/)
+- [Data.gov](http://api.data.gov/)
+- [World Bank](http://data.worldbank.org/developers?display=)
+- [Weather API's](http://www.programmableweb.com/news/top-10-weather-apis/analysis/2014/11/13)
+- [PlanetOS](https://planetos.com/)
+- [USGS Earthquakes](http://earthquake.usgs.gov/fdsnws/event/1/)
+
+[Socrata](https://www.socrata.com/) - Company that build data apis for government and non-profits
+
+    </textarea>
+    <script src="assets/remark-latest.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var hljs = remark.highlighter.engine;
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create({
+          highlightStyle: 'default',
+          highlightLanguage: 'remark',
+          ratio: "4:3"
+        }) ;
+    </script>
+    <script type="text/javascript">
+      console.log("Hope you're having fun!");
+    </script>
+  </body>
+</html>
