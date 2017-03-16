@@ -1,10 +1,10 @@
-###Add thematic data counties
+### Add thematic data counties
 
 In this exercise we are going to adding topojson file to Leaflet map. We will see how to create a topojson file, add the topojson layer to Leaflet, create and use a color scale for styling our polygons and adding a legend. 
 
 Leaflet API documentation and more examples [here](http://leafletjs.com/).
 
-###Steps
+### Steps
 
 1. The geojson files we have been working with are small. Larger geojson files can take longer to load depending on size and network speed. And on the web you never want to keep your user waiting :-) There are couple of ways you can deal with larger files.
 
@@ -44,28 +44,28 @@ Leaflet API documentation and more examples [here](http://leafletjs.com/).
 
 6. Copy and paste the code below into `exercises/js/add_thematic_data_counties.js`
 
-    ```javascript
-/********************************************************************************
-    ADD COUNTY POLYGONS
-  ********************************************************************************/
+```javascript
+    /********************************************************************************
+      ADD COUNTY POLYGONS
+    ********************************************************************************/
 
-  // Create a new L.TopoJSON layer
-  var countyLayer = new L.TopoJSON();
+    // Create a new L.TopoJSON layer
+    var countyLayer = new L.TopoJSON();
 
-  // Create a chroma color scale
-  var colorScale = chroma.scale(['4CB5F5', '34675C']);
-  var colorScaleDataValues = [];
+    // Create a chroma color scale
+    var colorScale = chroma.scale(['4CB5F5', '34675C']);
+    var colorScaleDataValues = [];
 
-  // The code below is another way to use jQuery's $.getJSON method using Javascript Promises
-  // See https://davidwalsh.name/write-javascript-promises
-  // Use the promise object returned by the $.getJSON method. 
-  // When the response is returned, the .done method is called with the callback function
-  // you provide. If the request fails, the .fail method is called.
-  $.getJSON('data/ca_counties_census.topo.json')
-    .done(addCountyData) //call function addCountyData on success
-    .fail(function() {
-      $('header').append('<p>Oh no, something went wrong with the county layer!</p>');
-  });
+    // The code below is another way to use jQuery's $.getJSON method using Javascript Promises
+    // See https://davidwalsh.name/write-javascript-promises
+    // Use the promise object returned by the $.getJSON method. 
+    // When the response is returned, the .done method is called with the callback function
+    // you provide. If the request fails, the .fail method is called.
+    $.getJSON('data/ca_counties_census.topo.json')
+      .done(addCountyData) //call function addCountyData on success
+      .fail(function() {
+        $('header').append('<p>Oh no, something went wrong with the county layer!</p>');
+    });
 
 
   function addCountyData(topoData){
@@ -205,7 +205,7 @@ Leaflet API documentation and more examples [here](http://leafletjs.com/).
       opacity:.5
     });
   }
-    ```
+```
 
 7. In Chrome, navigate to `http://localhost:8000/add_thematic_data_counties.html`. 
 

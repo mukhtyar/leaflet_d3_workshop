@@ -83,6 +83,25 @@
           </div>
         </div>
 
+        <div class="chart-container">
+
+          <div class="chart-header">
+            <h5>Incidence Rate of Lyme Disease in 
+              <span class="heading-location">California</span> 
+              <span class="heading-minor">(per 100,000 people)</span>
+            </h5>           
+          </div>
+
+          <div class="chart-canvas total">
+          </div>
+          <div class="tooltip"></div>
+
+          <div class="twocol">
+            <div class="chart-canvas male"></div>
+            <div class="chart-canvas female"></div>
+          </div>
+          
+        </div>
       </div>
 
     </section>
@@ -163,9 +182,18 @@
       });
     </script>
 
+    <!-- Load Leaflet Geocoder Javascript -->
+    <script src="js/lib/leaflet-control-geocoder/Control.Geocoder.js"></script>
+
+    <!-- Load Turf Javascript -->
+    <script src="js/lib/turf.min.js"></script>
+
+    <!-- Load D3 from CDN -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.js"></script>
 
     <!-- Javascript code for your app goes in between script tags below -->
-    <script src="js/add_thematic_data_counties.js"></script>
+    <script src="js/bar_chart.js"></script>
+    <script src="js/create_multiple_d3_barcharts.js"></script>
 
   </body>
 </html>
