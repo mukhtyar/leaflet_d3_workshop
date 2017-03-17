@@ -320,7 +320,9 @@ name: codemin
 - [.small[GeoJSON Specification]](http://geojson.org/geojson-spec.html), [.small[geojson.io]](http://geojson.io/), [.small[Validate your geojson]](http://geojsonlint.com/), [.small[Mapshaper]](http://mapshaper.org/)
 ---
 
-name: nestedlist
+# Leaflet
+
+---
 
 ## Leaflet
 
@@ -355,7 +357,7 @@ name: nestedlist
 ---
 name: nestedlist
 
-## Lesson 01 - Make a map
+## Exercise 01 - Make a map
 
 - This exercise covers the basics for creating a Leaflet map element and adding a basemap to it. Leaflet Docs and Tutorial [here](http://leafletjs.com/).
 
@@ -365,14 +367,14 @@ name: nestedlist
   - A div element with a certain id or class where you want your map to be 
   - A defined height for your map div
 
-- [Open HTML file in new tab](lessons_leaflet/01/index.html)
+- Open [leaflet/01/index.html](leaflet/01/index.html) file in new tab
 
-- Open `lessons_leaflet/01/index.js` in Code Editor. Copy code on next slide into js file. 
+- Open `leaflet/01/index.js` in Code Editor. Copy code on next slide into js file. 
 
 ---
 name: codemin
 
-## Lesson 01 - Make a map
+## Exercise 01 - Make a map
 
 ```javascript
   /********************************************************************************
@@ -407,7 +409,7 @@ name: codemin
 __Remember to refresh your browser to see your changes.__
 ---
 
-## Lesson 01 - Make a map
+## Exercise 01 - Make a map
 
 - Experiment with different basemaps such as `Stamen Watercolor` or `CartoDB DarkMatter`. You can browse basemap options [here](http://leaflet-extras.github.io/leaflet-providers/preview/index.html).
 
@@ -417,7 +419,7 @@ __Remember to refresh your browser to see your changes.__
   ```
 ---
 
-## Lesson 02 - Add Overlay
+## Exercise 02 - Add Overlay
 
  - Experiment with different ways of adding overlays to the map.
 
@@ -429,11 +431,11 @@ __Remember to refresh your browser to see your changes.__
 
 ---
 
-## Lesson 02 - Add Overlay
+## Exercise 02 - Add Overlay
 
-- [Open HTML file in new tab](lessons_leaflet/02/index.html)
+- Open [leaflet/02/index.html](leaflet/02/index.html) file in new tab
 
-- Open `lessons_leaflet/02/index.js` in Code Editor. Copy code on next slide into js file. 
+- Open `leaflet/02/index.js` in Code Editor. Copy code on next slide into js file. 
 
 ```javascript
   /********************************************************************************
@@ -458,14 +460,14 @@ __Remember to refresh your browser to see your changes.__
 __Remember to refresh your browser to see your changes.__
 ---
 
-## Lesson 02 - Add Overlay
+## Exercise 02 - Add Overlay
 
 - Another way to load a geojson file without using jQuery is to use the [Leaflet AJAX plugin](https://github.com/calvinmetcalf/leaflet-ajax).
 
 - [Leaflet Geojson Tutorial](http://leafletjs.com/examples/geojson.html)
 ---
 
-## Lesson 03 - Style Overlay
+## Exercise 03 - Style Overlay
 
 - Experiment with applying custom styles to geojson overlay
 
@@ -488,10 +490,10 @@ __Remember to refresh your browser to see your changes.__
 
 ---
 
-## Lesson 03 - Style Overlay
+## Exercise 03 - Style Overlay
 
-- [Open HTML file in new tab](lessons_leaflet/03/index.html)
-- Open `lessons_leaflet/03/index.js` in Code Editor. Copy code on this and next slide into js file. 
+- Open [leaflet/03/index.html](leaflet/03/index.html) file in new tab
+- Open `leaflet/03/index.js` in Code Editor. Copy code on this and next slide into js file. 
 - __Note__ new Leaflet layer control on bottom left hand side of map
 
 ```javascript
@@ -554,7 +556,7 @@ __Remember to refresh your browser to see your changes.__
 ```
 ---
 
-## Lesson 04 - Working with Larger Datasets
+## Exercise 04 - Working with Larger Datasets
 
 - Geojson files with lots of data can take longer to load depending on size and network speed. And on the web you never want to keep your user waiting :-) There are couple of ways you can deal with larger files.
 
@@ -567,10 +569,10 @@ __Remember to refresh your browser to see your changes.__
 
 ---
 
-## Lesson 04 - Working with Larger Datasets
+## Exercise 04 - Working with Larger Datasets
 
-- [Open HTML file in new tab](lessons_leaflet/04/index.html)
-- Open `lessons_leaflet/04/index.js` in Code Editor. Copy code on this and next slide into js file. 
+- Open [leaflet/04/index.html](leaflet/04/index.html) file in new tab
+- Open `leaflet/04/index.js` in Code Editor. Copy code on this and next slide into js file. 
 - __Note__: New script tags for working with Topojson data in html file, we will also use a [color js library](http://gka.github.io/chroma.js/) called `chroma.js` to style the counties. Developed by [Gregor Aisch](http://driven-by-data.net/).
 
 ```javascript
@@ -599,7 +601,7 @@ __Remember to refresh your browser to see your changes.__
 
 ---
 
-## Lesson 04 - Working with Larger Datasets
+## Exercise 04 - Working with Larger Datasets
 
 ```javascript
 function addCountyData(topoData){
@@ -631,7 +633,7 @@ function addCountyData(topoData){
 ```
 ---
 
-## Lesson 04 - Working with Larger Datasets
+## Exercise 04 - Working with Larger Datasets
 
 ```javascript
 // Extracts Population Density values for our color scale from topojson
@@ -673,7 +675,7 @@ function handleLayer(layer){
 ```
 ---
 
-## Lesson 04 - Working with Larger Datasets
+## Exercise 04 - Working with Larger Datasets
 
 ```javascript
 // Function fired when user's mouse enters the layer
@@ -707,22 +709,22 @@ function leaveLayer(){
 ```
 ---
 
-## Lesson 05 - Using Leaflet plugins
+## Exercise 05 - Using Leaflet plugins
 
 - Huge list of [Leaflet plugins](http://leafletjs.com/plugins.html) to extend functionality. 
 
 - We will add a geocoding plugin called [Leaflet Control Geocoder](https://github.com/perliedman/leaflet-control-geocoder)
 
-- [Open HTML file in new tab](lessons_leaflet/05/index.html)
+- Open [leaflet/05/index.html](leaflet/05/index.html) file in new tab
 
-- Open `lessons_leaflet/05/index.js` in Code Editor. Copy code on next slide into js file. 
+- Open `leaflet/05/index.js` in Code Editor. Copy code on next slide into js file. 
 
-- __Note__: New script tag and style tag for Leaflet Geocoder Control files
+- __Note__: New script tag and style tag for Leaflet Geocoder Control plugin
 
 
 ---
 
-## Lesson 05 - Using Leaflet plugins
+## Exercise 05 - Using Leaflet plugins
 
 ```javascript
 /********************************************************************************
@@ -755,7 +757,7 @@ Another geocoder built with open source software is [MapZen](https://mapzen.com/
 
 ---
 
-## Lesson 05 - Using Leaflet plugins
+## Exercise 05 - Using Leaflet plugins
 
 ```javascript
 // Overwrite the markGeocode function provided by geocoder control
@@ -789,40 +791,120 @@ map.on('click', function(e){
 
 ---
 
+## Exercise 06 - Spatial Analysis in your Browser
 
+- Experiment with doing some spatial analysis directly in your browser using Turf.js
 
+- [Turf.js](http://turfjs.org/) is a javascript library for spatial analysis. MapBox has a great intro on using Turf that you can check out [here](https://www.mapbox.com/help/intro-to-turf/).
 
+- Open [leaflet/06/index.html](leaflet/06/index.html) file in new tab
 
+- Open `leaflet/06/index.js` in Code Editor. Copy code on next slide into js file. 
 
-
-
-
-
+- __Note__: New script tag for Turf.js
 
 
 ---
-#D3
+
+## Exercise 06 - Spatial Analysis in your Browser
+
+```javascript
+  // Function fired when user's mouse enters the layer
+  function enterLayer(){
+
+    var county = this.feature;
+
+    // Get county name and pop. density and create a new html string
+    var countyName = county.properties.CountyNAME;
+    var density = county.properties.POP2014_SQMI;
+    var html = countyName + '<br/>' + Math.round(density) + ' people / square mile';
+
+    // Change style of polygon
+    this.setStyle({
+      weight:3,
+      opacity: 1
+    });
+
+    /********************************************************************************
+    SPATIAL ANALYSIS IN YOUR BROWSER
+    ********************************************************************************/
+
+  }
+```
+
 ---
 
-name: nestedlist
+## Exercise 06 - Spatial Analysis in your Browser
 
-##D3 (Data Driven Documents)
+```javascript
 
-- [JavaScript library](https://d3js.org/) for producing dynamic, interactive data visualizations in web browsers.
+  /********************************************************************************
+  SPATIAL ANALYSIS IN YOUR BROWSER
+  ********************************************************************************/
+
+  // Many turf functions expect a featurecollection. 
+  // Use turf's featurecollection helper method to convert our geojson feature into a
+  // featurecollection
+  var fc = turf.featurecollection([county]);
+
+  // Count number of tick locations within county
+  var countFeature = turf.count(fc, tickLocations.toGeoJSON(), 'pt_count');
+  var count = countFeature.features[0].properties.pt_count;
+
+  // Add count to html string
+  html = html + '<br/>' + count + ' collection locations';
+
+  // Append html string to p element with .info class
+  $('.info').html(html);
+
+
+```
+
+Experiment with other turf functions. This [google search](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=leaflet%20turf%20jsfiddle) brings up a lot of code snippets on JS Fiddle that show what you can do with Leaflet and Turf.
+
+---
+
+## Adding the Leaflet map to a 'real' website
+
+
+- Open [leaflet/final/index.html](leaflet/final/index.html) file in new tab
+
+- __Note__: New legend element
+
+
+---
+
+# D3
+
+---
+
+## D3 (Data Driven Documents)
+
+- [D3.js](https://d3js.org/) is a javascript for producing dynamic, interactive data visualizations in web browsers.
+
 - Makes use of the widely implemented SVG, HTML5, and CSS standards
+
 - Created by [Mike Bostock](https://bost.ocks.org/mike/), Vadim Ogievetsky and Jeffrey Heer (all at that time were part of the Stanford Visualization Group).
+
 - Very active user community in Bay Area. Checkout [Bay Area d3 User Group](http://www.meetup.com/Bay-Area-d3-User-Group/).
-- Rich ecosystem of examples showing visualization types, coding techniques [blockbuilder.org/](http://blockbuilder.org/), [bl.ocks.org/](http://bl.ocks.org/)
+
+- Rich ecosystem of examples showing visualization types, coding techniques:
+  - [blockbuilder.org/](http://blockbuilder.org/)
+  - [bl.ocks.org/](http://bl.ocks.org/)
+
 - [Navigating the D3 Ecosystem](http://enjalot.github.io/talks/navd3eco/)
+
 - How do I learn D3.js? [Quora thread](https://www.quora.com/How-do-I-learn-D3-js)
 
 ---
 
-##What does it do?
+## What does it do?
 
 - Transforms data into information
 
 - It is *not* a graphics library, it is *not* a charting library, it is a general purpose data visualization library
+
+- Visualizes data using web standards (HTML, Javascript, CSS, DOM, SVG)
 
 - Heavily used in data journalism and visualization. New York Times has been the pioneer in data visualization and data journalism. 
 
@@ -830,18 +912,18 @@ name: nestedlist
 
 ---
 
-##Revisiting mapping
+## Revisiting mapping
 
-Mapping: An operation that associates each element of a given set (the domain) with one or more elements of a second set (range)
+- Mapping: An operation that associates each element of a given set (the domain) with one or more elements of a second set (range)
 
-![](assets/mapping.png)
+![](assets/images/mapping.png)
 
-Any (computer) visualization problem can be described as a mapping problem. Geospatial mapping is just a subset.
+- Any (computer) visualization problem can be described as a mapping problem. Geospatial mapping is just a subset.
 
 ---
 name: codemin
 
-##SVG
+## SVG
 
 ```xml
 <svg width="300" height="180">
@@ -879,9 +961,7 @@ The <text> tag is good for simple labels. The <path> tag is powerful but complex
 
 ---
 
-name: nestedlist
-
-##SVG v/s Canvas
+## SVG v/s Canvas
 
 - HTML5 Canvas is a raster based format for drawing on the web
   - You can draw raster graphcis with D3
@@ -896,9 +976,7 @@ name: nestedlist
 
 ---
 
-name: pushup
-
-##Again, what is D3?
+## Again, what is D3?
 
 - Has everything you need for visualizing complex data BUT you will not find commands like barchart, scatterplot, or piechart, or even map
 
@@ -915,13 +993,12 @@ name: pushup
 "Automating the hard bits you already understand" as opposed to "hiding the hard bits" @andy_matuschak
 
 ---
-name: nestedlist
 
-##Data Visualization
+## Data Visualization
 
 - Primary uses
   - Explanation - e.g. [Oscar Contenders](http://www.nytimes.com/interactive/2013/02/20/movies/among-the-oscar-contenders-a-host-of-connections.html?_r=1&)
-  - Exploration - R, Python, Excel, Tableau, D3 ([requires some more work](http://learnjsdata.com/))
+  - Exploration - R, Python, Excel, Tableau
 
 - Curated lists of data viz and data viz research
   - [visualisingdata.com](http://www.visualisingdata.com/)
@@ -932,386 +1009,153 @@ name: nestedlist
   - d3.geo
   - [Jason Davies](https://www.jasondavies.com/maps/), [Jason Davies Code Blocks](https://bl.ocks.org/jasondavies)
 
----
+- D3 version 3 not the same as D3 version 4
 
-name: nestedlist
-
-##D3 - Conceptual Hurdles
-
-- Selections
-  - [How Selections Work - Mike Bostock](https://bost.ocks.org/mike/selection/)
-
-- Data binding
-  - Pairs and object and an element
-  - Keeps track of new and old objects
-  - Let's you animate differences between new and old
-  - [Thinking with joins - Mike Bostock](https://bost.ocks.org/mike/join/)
-
-<small>Next few slides adapted from [A fun, difficult intro to d3 - Tom MacWright](http://www.macwright.org/presentations/dcjq/)</small>
+- Other data visualization [tools](http://selection.datavisualization.ch/)
 
 ---
 
-name: codemin
+## D3 Concepts - SELECTIONS
 
-##D3 Code
-
-- Search result for [d3 bar chart](https://bl.ocks.org/mbostock/3885304)
-
-- Let's try to understand this part first (selection & data binding)
-
+- Selections are Arrays. D3 provides shorthand for selecting and manipulating.
 ```javascript
+  d3.select("svg") // Similar to document.querySelector("svg")
+```
 
-    var svg = d3.select("body").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+- Select existing circles elements. Set attributes and styles
+```javascript
+  // select all <circle> elements
+  var circle = d3.selectAll("circle");
 
-    svg.append("g")
-      .attr("class", "bars")
-      .selectAll("bar")
-        .data(data)
-      .enter().append("rect")
-        .style("fill", "DCDADA")
-        .attr("x", function(d) { return xScale(d.date); })
-        .attr("width", xScale.rangeBand())
-        .attr("y", function(d) { return yScale(d.value); })
-        .attr("height", function(d) { return height - yScale(d.value); });
+  // set some attributes and styles
+  circle.attr("cx", 20);
+  circle.attr("cy", 12);
+  circle.attr("r", 24);
+  circle.style("fill", "red");
+```
 
+- Select existing element and append a new element
+```javascript
+  // select all <circle> elements
+  var circle = d3.selectAll("circle");
+
+  var label = circle.append('text');
+  label.text = 'A';
 ```
 
 ---
 
-name: codemax2
+## D3 Concepts - DATA JOIN
 
-##D3 Code
-
-- A simpler example
-
+- Data are arrays
 ```javascript
-
-d3.selectAll('rect')
-  .data([{val: 30}, {val: 55}, {val: 34}])
-  .enter()
-  .append('rect')
-  .attr(Height);
-
+  // array of values
+  var data = [1, 1, 2, 3, 5, 8];
+  // array of objects
+  var data = [
+    {x: 10.0, y: 9.14},
+    {x:  8.0, y: 8.14},
+    {x: 13.0, y: 8.74},
+    {x:  9.0, y: 8.77},
+    {x: 11.0, y: 9.26}
+  ];
 ```
 
----
-
-name: codemax
-
+- Use data to create multiple elements
 ```javascript
-
-// an empty selection
-// looking for data
-
-d3.selectAll('rect')
-
+  var circle = svg.selectAll("circle")
+      .data(data)
+  
+  circle.enter().append("circle")
+      .attr("cx", x)
+      .attr("cy", y)
+      .attr("r", 2.5);
 ```
 
+- The data method computes the join - defining enter, exit and update selections.
 ---
-name: codemax
+
+## D3 - ENTER, EXIT, UPDATE
+
+- Joining elements to data is the hardest concept to grasp
+
+- Best done by the author Mike Bostock - [Thinking with Joins](https://bost.ocks.org/mike/join/)
+
+- Also [this book](http://d3indepth.com/) in progress is great!
+
+![](assets/images/data-join.png)
+
+
+---
+
+## D3 - Loading and manipulating data
+
+- Lots of convenience functions
 
 ```javascript
-
-// data, which would be bound to
-// a selection
-// simple array or array of objects
-
-.data([{value: 30}, {value: 55}, 
-            {value: 34}])
-```
-
-
----
-
-name: codemax
-
-```javascript
-
-// for every time that we see data
-// but we do not see an element
-
-.enter()
-
-```
-
----
-
-name: codemax
-
-```javascript
-
-// append a SVG element rect
-// and set it's height attribute 
-// to Height
-.append('rect')
-.attr(Height);
-
-```
-
----
-
-name: databinding
-
-## What does data binding look like?
-
-- D3 adds a `__data__` property to each graphic element
-
-![](assets/data_binding_block.png)
-![](assets/data_binding_console.png)
-<div id="circle"></div>
-
----
-
-name: codemax
-
-```javascript
-
-// d3 has a few different
-// functions that set stuff
-.text()
-.property()
-.style()
-.attr()
-
-// each takes a function
-.attr('height', function() { })
-
-```
-
----
-
-name: codemax2
-
-```javascript
-
-// and that function gets data
-// from your .data()
-.attr('height', function(d) {
-  return d.value;
-})
-
-// also provide static values
-.attr('height', 100)
-
-// get back existing value
-var barHeight = rect.attr('height'); 
-barHeight -> 30/55/34
-
-```
----
-
-## D3 Code
-
-- Same simple example but written slightly differently
-
-- We are now defining a new variable to hold a reference to what d3.selectAll returns
-
-- This makes it easier to work with the subselections (enter, exit, update)
-
-```javascript
-
-// this is an empty selection
-// data has been bound to empty selection
-var selection = d3.selectAll('rect')
-  .data([{value: 30}, {value: 55}, 
-                         {value: 34}]);
-
-```
-
----
-
-name: codemax2
-
-```javascript
-
-// for each part of the data which
-// is not joined to an element in
-// the selection,
-// add an element
-selection
-  .enter()
-  .append('rect');
-
-```
----
-
-name: codemax2
-
-```javascript
-
-// for each part of the selection
-// that is no longer in the data,
-// remove it
-selection
-  .exit()
-  .remove();
-
-```
-
----
-
-name: codemax2
-
-```javascript
-
-// for each part of the selection,
-// update some attribute
-selection
-  .attr('height', function(d) {
-    return d.value;
+d3.csv("stocks.csv", function(stocks) {
+  stocks.forEach(function(d) {
+    d.price = +d.price;
+    d.date = format.parse(d.date);
   });
+});
 
+d3.json("stocks.json", function(stocks) {
+  stocks.forEach(function(d) {
+    d.date = format.parse(d.date);
+  });
+});
 ```
 
-Play with this code at [Simple D3 Bar Chart - blockbuilder.org](http://blockbuilder.org/mukhtyar/89e0407a1828d59c72e7)
+- Data manipulation - d3.nest()
+
+- D3 [API](https://github.com/d3/d3/blob/master/API.md) Reference
 
 ---
 
-##Making it cool - Transitions
+### Exercise 01 - Create a bar chart
 
-- Special type of selection 
-- Operators apply smoothly over time
-- Delays, duration, easing
+- Open [d3/01/index.html](d3/01/index.html) file in new tab
 
-Play with this code at [Simple D3 Bar Chart with Transitions - blockbuilder.org](http://blockbuilder.org/mukhtyar/d29605757190f60c555a)
+- Open `d3/01/index.js` in Code Editor. 
 
-
-
-[Working with Transitions - Mike Bostock](https://bost.ocks.org/mike/transition/)
-
----
-
-name: nestedlist
-
-## Conceptual Hurdles
-- Selections
-  - [How Selections Work - Mike Bostock](https://bost.ocks.org/mike/selection/)
-
-- Data binding
-  - [Thinking with joins - Mike Bostock](https://bost.ocks.org/mike/join/)
-
-- D3 Axes and scales are relatively easier to understand compared to selections and joins
-
-
+- Review the code for adding a bar chart
+  - Create new `div` in html file
+  - Load csv file with data
+  - Manipulate the data, and map it to new `bar` elements
 
 ---
 
-name: codemax2
 
-## D3 Scale
+### Exercise 02 - Create a resuable bar chart component
+
+- Open [d3/02/index.html](d3/02/index.html) file in new tab
+
+- Open `d3/02/index.js` and `d3/02/bar-chart.js` in Code Editor. 
+
+- A good place to start is by reading [Towards Resuable Charts](https://bost.ocks.org/mike/chart/) where Mike Bostock proposes a convention for creating reusable charts.
+
+- [This](https://bocoup.com/weblog/reusability-with-d3) blog post and [this book](http://backstopmedia.booktype.pro/developing-a-d3js-edge/1-getting-started/) do a great job on clarifying the resuable charts api with examples and explanations.
+
+---
+
+### Exercise 03 - Update bar chart data for counties
+
+- Open [d3/03/index.html](d3/03/index.html) file in new tab
+
+- Open `d3/03/index.js` and `d3/03/bar-chart.js` in Code Editor. 
+
+- Refactor code to get data from the CDPH Open Data Portal instead of a csv file. You will run into some errors, see if you can figure out what it is. 
 
 ```javascript
-d3.scale.linear()
-    // data comes in
-    .domain([67, 1098])
-    // representation comes out
-    //e.g. pixel width/height of svg
-    .range([0, 500]); 
+var url = "https://chhs.data.ca.gov/resource/jf5m-3fs6.json?disease=Lyme%20Disease&$limit=3000";
+d3.json(url, function(error, _data) { 
+
+}
 
 ```
-- Use d3 helper methods to calculate domain - d3.extent, d3.max
-- Linear, ordinal, categorical and time scales
 
 ---
-
-name: codemax2
-
-## Using D3 Scale
-
-```javascript
-var x = d3.scale.linear()
-          .domain([67, 1098])
-          .range([0, 500]); 
-
-x(0) //-32.49
-x(67) //0
-x(500) // 209.99
-x(1098) // 500
-```
-- Scale object is also a function
-- Calling the scale is how we translate values from one coordinate to another
-
----
-
-## D3 Axes
-
-```javascript
-var x = d3.scale.linear()
-          .domain([67, 1098])
-          .range([0, 500]); 
-
-var xAxis = d3.svg.axis()
-  .scale(x)         // x is d3.scale.linear()
-  .orient('bottom') // the ticks go below the graph
-  .ticks(4);        // specify the number of ticks
-
-var svg = d3.select('body')
-  .append('svg')        // create an <svg> element
-    .attr('width', 300) // set its dimentions
-    .attr('height', 150);
-
-svg.append('g')            // create a <g> element
-  .attr('class', 'x axis') // specify classes
-  .call(xAxis); // add the axis
-```
-
----
-
-name: codemax2
-
-## Using D3 Scale with geo stuff
-
-```javascript
-var width = 960,
-    height = 500;
-
-var projection = d3.geo.albersUsa()
-    .scale(1000)
-    .translate([width / 2, height / 2]);
-
-projection([-112, 34])
-//[259.40551744936477, 313.5146898982723]
-```
-- [US States Topojson with D3](http://bl.ocks.org/mbostock/4090848)
-
----
-
-
-## Using D3 Scale with geo stuff
-Building up the mapping function
-
-```javascript
-var width = 960,
-    height = 500;
-
-var projection = d3.geo.albersUsa()
-    .scale(1000)
-    .translate([width / 2, height / 2]);
-
-//Creating a path function
-var path = d3.geo.path().projection(projection);
-
-// After getting the data
-svg.selectAll('.counties')
-  .data(counties.features)
-  .enter().append('path')
-  .attr('d', path)
-```
-- [US Counties Topojson with D3](http://bl.ocks.org/mbostock/4122298)
----
-
-
-## D3 Layouts
-
-- Pie, Histogram, Stack, Tree, Force, Cluster, etc.
-- More at [API docs](https://github.com/mbostock/d3/wiki/Layouts)
-
----
-
 ## D3 and other libraries
 
 - Rickshaw, Highcharts, NVD3 are libraries built on top of D3
@@ -1322,19 +1166,6 @@ svg.selectAll('.counties')
 
 - [Vega](https://github.com/vega/vega/wiki/Vega-and-D3) - higher-level visualization specification language on top of D3
 
----
-
-## API
-
-- [California Health and Human Services Open Data Portal](https://chhs.data.ca.gov/)
-- [Berkeley Ecoengine](https://holos.berkeley.edu/)
-- [Data.gov](http://api.data.gov/)
-- [World Bank](http://data.worldbank.org/developers?display=)
-- [Weather API's](http://www.programmableweb.com/news/top-10-weather-apis/analysis/2014/11/13)
-- [PlanetOS](https://planetos.com/)
-- [USGS Earthquakes](http://earthquake.usgs.gov/fdsnws/event/1/)
-
-[Socrata](https://www.socrata.com/) - Company that build data apis for government and non-profits
 
     </textarea>
     <script src="assets/lib/remark-latest.min.js" type="text/javascript">
