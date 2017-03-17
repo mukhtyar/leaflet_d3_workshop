@@ -56,7 +56,7 @@ name: intro
 ## Web Apps with Leaflet and D3
 Shruti Mukhtyar 
 
-
+<br/>
 ### Before we start:
 1. Download repo from GitHub to Documents folder.
   ```xml
@@ -79,14 +79,22 @@ name: review
 
 The hardest thing about learning to code is knowing where to begin!
 
+Quick Review:
 - Tools - Code Editor & Chrome Developer Tools
 - Quick Review of Client & Server
 - HTML
 - CSS
 - DOM
 - JavaScript
-- SVG, Canvas
 
+Leaflet:
+- What is Leaflet?
+- Exercises
+
+D3:
+- What is D3?
+- SVG, Canvas
+- Other options for data viz
 
 <!--NEXT SLIDE -->
 ---
@@ -170,6 +178,22 @@ name: html
   ```
 - [.small[CSS Reference]](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
+---
+
+name: nestedlist
+
+## JavaScript
+
+- "Easy to learn, hard to master"
+- Role &raquo; Creating interaction
+- Interpreted by your browser
+- Asychronous (code executes in background after client-browser recieves data from server)
+- Get familiar with
+    - Working with json objects
+    - Array functions (forEach, filter, map)
+    - Method chaining, Callbacks, Closures, Modules
+- [.small[JavaScript Reference]](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
 
 ---
 name: dom
@@ -195,6 +219,11 @@ name: dom
   <html>
   <head>
       <!-- head content -->
+      <style type="text/css">
+        div {
+          color: red;
+        }
+      </style>
   </head>
   <body>
       <h1>Header text here</h1>
@@ -218,22 +247,7 @@ name: dom
 ![](assets/images/dom_model.jpg)
 
 ---
-name: nestedlist
 
-## JavaScript
-
-- "Easy to learn, hard to master"
-- Role &raquo; Creating interaction
-- Interpreted by your browser
-- Asychronous (code executes in background after client-browser recieves data from server)
-- Get familiar with
-    - Working with json objects
-    - Array functions (forEach, filter, map)
-    - Method chaining, Callbacks, Closures, Modules
-- [.small[JavaScript Reference]](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-
-
----
 name: nestedlist
 
 ## Resources
@@ -291,7 +305,7 @@ var obj = {
 ---
 name: codemin
 
-##GeoJSON
+## GeoJSON
 
   ```javascript
   var obj = 
@@ -318,6 +332,16 @@ name: codemin
   }
   ```
 - [.small[GeoJSON Specification]](http://geojson.org/geojson-spec.html), [.small[geojson.io]](http://geojson.io/), [.small[Validate your geojson]](http://geojsonlint.com/), [.small[Mapshaper]](http://mapshaper.org/)
+---
+
+## Map Tiles
+
+![](assets/images/tiles.png)
+
+- [How Web Maps Work](https://www.mapbox.com/help/how-web-maps-work/)
+- [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator) - Standard projection for map tiles
+- GeoJSON data coordinates should be in latitude, longitude (WGS 84)!!!
+
 ---
 
 # Leaflet
@@ -361,7 +385,7 @@ name: nestedlist
 
 - This exercise covers the basics for creating a Leaflet map element and adding a basemap to it. Leaflet Docs and Tutorial [here](http://leafletjs.com/).
 
-- Four things you need to add a Leaflet map to a web page
+- Four things you absolutely need for adding Leaflet map to a web page
   - Leaflet CSS file
   - Leaflet JavaScript file
   - A div element with a certain id or class where you want your map to be 
@@ -630,6 +654,11 @@ function addCountyData(topoData){
   // Add layer to layer control
   layerControl.addOverlay(countyLayer, "CA Counties");
 }
+
+// Calculate quantile breaks for color scale
+function calcQuantileBreaks(){
+  colorScale.domain(colorScaleDataValues, 5, 'quantiles');
+}
 ```
 ---
 
@@ -644,11 +673,6 @@ function addToDomain(layer){
   layer.feature.properties['POP2014_SQMI'] = value;
   // Add the value to our color scale
   colorScaleDataValues.push(value);
-}
-
-// Calculate quantile breaks for color scale
-function calcQuantileBreaks(){
-  colorScale.domain(colorScaleDataValues, 5, 'quantiles');
 }
 
 // Style each layer
@@ -799,7 +823,7 @@ map.on('click', function(e){
 
 - Open [leaflet/06/index.html](leaflet/06/index.html) file in new tab
 
-- Open `leaflet/06/index.js` in Code Editor. Copy code on next slide into js file. 
+- Open `leaflet/06/index.js` in Code Editor. Copy code on next slide into js file (modify existing enterLayer function). 
 
 - __Note__: New script tag for Turf.js
 
@@ -997,7 +1021,7 @@ The <text> tag is good for simple labels. The <path> tag is powerful but complex
 ## Data Visualization
 
 - Primary uses
-  - Explanation - e.g. [Oscar Contenders](http://www.nytimes.com/interactive/2013/02/20/movies/among-the-oscar-contenders-a-host-of-connections.html?_r=1&)
+  - Explanation - e.g. [Faces of Fracking](http://www.facesoffracking.org/data-visualization/)
   - Exploration - R, Python, Excel, Tableau
 
 - Curated lists of data viz and data viz research
@@ -1081,16 +1105,16 @@ The <text> tag is good for simple labels. The <path> tag is powerful but complex
 
 - Best done by the author Mike Bostock - [Thinking with Joins](https://bost.ocks.org/mike/join/)
 
-- Also [this book](http://d3indepth.com/) in progress is great!
+- Also [D3 In Depth book](http://d3indepth.com/) (in progress) is great!
 
 ![](assets/images/data-join.png)
 
 
 ---
 
-## D3 - Loading and manipulating data
+## D3 - Other concepts
 
-- Lots of convenience functions
+- Lots of convenience functions for loading and manipulating data
 
 ```javascript
 d3.csv("stocks.csv", function(stocks) {
@@ -1106,6 +1130,8 @@ d3.json("stocks.json", function(stocks) {
   });
 });
 ```
+
+- Axes, Scales
 
 - Data manipulation - d3.nest()
 
