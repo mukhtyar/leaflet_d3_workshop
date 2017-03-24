@@ -11,14 +11,6 @@
     .remark-code, .remark-inline-code {
       font-family: "Inconsolata", "Courier";
     }
-    #slide-tasks ul {
-      list-style-type: decimal;
-      font-size: 1.3em;
-    }
-    #slide-task2 img {
-      width: 45%;
-      margin-left: 20%;
-    }
     .ex {
       background-color: #E3E7F0;
       color: black;
@@ -46,25 +38,33 @@
   </head>
   <body>
     <textarea id="source">
-name: agenda
 layout: true
 class: left
 background-image: url(assets/images/logos.png)
 ---
 name: intro
-
-## Web Apps with Leaflet and D3
-Shruti Mukhtyar 
+class: center
 
 <br/>
+# Web Apps with Leaflet and D3
+
+<br/>
+#### Shruti Mukhtyar 
+
+Spatial Data Science Bootcamp
+
+---
 ### Before we start:
-1. Download repo from GitHub to Documents folder.
+
+We will use the Windows Desktop. You are welcome to use the VM if you prefer.
+
+1. Copy workshop folder to Documents folder.
   ```xml
     https://github.com/mukhtyar/leaflet_d3_workshop.git
   ```
 2. Open the Windows command prompt. Navigate to folder and start a local server.
   ```python
-    >cd \Documents\leaflet_d3_workshop
+    >cd Documents\leaflet_d3_workshop
     >C:\Python27\ArcGIS10.4\python -m SimpleHTTPServer
   ```
 3. Open Chrome browser. Type in address `localhost:8000` in the URL bar.
@@ -77,11 +77,8 @@ name: review
 
 ## Where to Begin?
 
-The hardest thing about learning to code is knowing where to begin!
-
 Quick Review:
 - Tools - Code Editor & Chrome Developer Tools
-- Quick Review of Client & Server
 - HTML
 - CSS
 - DOM
@@ -107,8 +104,7 @@ name: tools
 
 ## Browser
 - Developer Tools - press `Ctrl+Shift+I` (or `F12`) in Chrome
-- Emulator - see how pages look at different breakpoints (screen sizes)
-- More info on Chrome Developer tools [here](https://developer.chrome.com/devtools)
+- More info on Chrome Developer tools [here](https://developers.google.com/web/tools/chrome-devtools/)
 
 
 <!--NEXT SLIDE -->
@@ -117,12 +113,11 @@ name: client-server
 
 ## Quick Review of Client & Server
 
-![](assets/images/client-server.gif)
+![](assets/images/HTTP_Steps.png)
 
 - HTTP, language of the web
 - Browser sends HTTP GET Request. Server sends response for each request with content and/or status message.
-- Open Network Panel on Chrome Developer Tools. Reload the page to see network acitivity
-- [.small[How Does the Web Work?]](http://www.theodinproject.com/web-development-101/how-does-the-web-work)
+- [HTTP Basics](https://www.ntu.edu.sg/home/ehchua/programming/webprogramming/HTTP_Basics.html)
 
 ???
 When a link is clicked, the browser creates an .em[HTTP Get Request] that is sent to the server. Server responds. Browser displays the page. Sees that it needs a few more things - e.g. images, fonts, other files. Browser sends new a GET request for each item. Server sends response for each request with status code (200 - found, 304 - retrieving from browser cache, 404 - not found, 500 - server error )
@@ -134,25 +129,23 @@ name: html
 
 ### Hyper Text Markup Language (HTML)
 
-- Role &raquo; Describes content (not presentation) 
-- Tags - block and inline
+- HTML is not a programming language; it is a markup language
+- Role &raquo; Describes content
+- HTML Elements consist of a opening tag, the content, and a closing tag
+
+![](assets/images/grumpy-cat-small.png)
+
   ```xml
-    <div></div>
     <ul>
       <li><a href="gif.berkeley.edu">Home Page</a></li>
       <li><a href="gif.berkeley.edu/people">Staff</a></li>
     </ul>
+    <div id="map" class="center" style="height:500px;"></div>
   ```
-- Classes and ID's 
-  ```xml
-    <div id="map"></div>
-    <div class="chart"></div>
-  ```
-- Properties and Attributes 
-  ```xml
-    <div id="map" style="height:500px;"></div>
-  ```
-- [.small[HTML Reference]](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+
+- HTML5 Resources
+  - [Dive into HTML5](http://diveintohtml5.info/)
+  - [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Learn/HTML)
 
 
 <!--NEXT SLIDE -->
@@ -160,7 +153,8 @@ name: html
 
 ## Cascading Style Sheet (CSS)
 
-- Role &raquo; CSS is the presentation of the content
+- Not a programming or markup language
+- Role &raquo; Describes presentation of a document written in HTML or XML (e.g. SVG)
 - Selectors, properties, and values
 - Properties and Attributes
   ```xml
@@ -176,24 +170,8 @@ name: html
       float: left;
     }
   ```
-- [.small[CSS Reference]](https://developer.mozilla.org/en-US/docs/Web/CSS)
-
----
-
-name: nestedlist
-
-## JavaScript
-
-- "Easy to learn, hard to master"
-- Role &raquo; Creating interaction
-- Interpreted by your browser
-- Asychronous (code executes in background after client-browser recieves data from server)
-- Get familiar with
-    - Working with json objects
-    - Array functions (forEach, filter, map)
-    - Method chaining, Callbacks, Closures, Modules
-- [.small[JavaScript Reference]](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-
+- CSS3 Resources
+  - [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Learn/CSS)
 
 ---
 name: dom
@@ -201,17 +179,18 @@ name: dom
 ## Document Object Model (DOM)
 
 - Structured representation of the document (a tree) created by the browser
-
 - HTML you write is parsed by the browser and turned into the DOM
-
 - Programming interface for HTML and SVG documents
-
 - JavaScript manipulates the DOM
 
-- [.small[DOM in simple English, please!]](https://css-tricks.com/dom/)
+![](assets/images/rendering.svg)
 
+???
+When a browser displays a document, it must combine the document's content with its style information. It processes the document in two stages:
+The browser converts HTML and CSS into the DOM (Document Object Model). The DOM represents the document in the computer's memory. It combines the document's content with its style.
+The browser displays the contents of the DOM.
+Understanding the DOM helps you design, debug and maintain your CSS because the DOM is where your CSS and the document's content meet up.
 ---
-
 ## Conceptual Web Page
 
   ```xml
@@ -247,10 +226,24 @@ name: dom
 ![](assets/images/dom_model.jpg)
 
 ---
+## JavaScript
 
-name: nestedlist
+- "Easy to learn, hard to master"
+- Role &raquo; Creating interaction
+- Interpreted by your browser
+- Asychronous (code executes in background after client-browser recieves data from server)
+- Get familiar with
+    - Working with json objects
+    - Array functions (forEach, filter, map)
+    - Method chaining, Callbacks, Closures, Modules
+- JS Resources
+  - [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Learn/JavaScript)
 
-## Resources
+???
+JavaScript is arguably more difficult to learn than related technologies such as HTML and CSS. Before attempting to learn JavaScript, you are strongly advised to get familiar with at least these two technologies first, and perhaps others as well.
+
+---
+## JavaScript Resources
 
 - If you are going to develop medium to large scale web apps learn more about using front-end development tools. 
     - [Getting Started Web Development Guide](http://jlord.us/blog/getting-started.html)
@@ -261,93 +254,27 @@ name: nestedlist
 - Web Design
     - [A List Apart](http://alistapart.com/)
     - [Webdesigner News](http://www.webdesignernews.com/) - curated stories
-- Courses for all levels on CodeAcademy, Udacity, Coursera, etc.
 - [Eloquent Javascript](eloquentjavascript.net)
 - [Egghead.io](https://egghead.io/) - Bite size web dev video training
-- [Frontend Masters](https://frontendmasters.com/) - all levels, paid subscription
-- <small>Lot's more on the web!</small>
+- Lynda.com, Frontend Masters, CodeAcademy, Udacity, Coursera, etc.
 
-<!--NEXT SLIDE -->
----
-name: codemin
-
-
-##JSON
-
-```javascript
-var obj = {
-  "firstName": "John",
-  "lastName": "Smith",
-  "isAlive": true,
-  "age": 25,
-  "address": {
-    "streetAddress": "21 2nd Street",
-    "city": "New York",
-    "state": "NY",
-    "postalCode": "10021-3100"
-  },
-  "phoneNumbers": [
-    {
-      "type": "home",
-      "number": "212 555-1234"
-    },
-    {
-      "type": "office",
-      "number": "646 555-4567"
-    }
-  ],
-  "children": ['Jack','Jill','Bo'],
-  "spouse": null
-}
-```
-
-<!--NEXT SLIDE -->
----
-name: codemin
-
-## GeoJSON
-
-  ```javascript
-  var obj = 
-  { "type": "FeatureCollection",
-      "features": [
-        { "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [102.0, 0.5] },
-          "properties": {"prop0": "value0"}
-         },
-        { "type": "Feature",
-           "geometry": {
-             "type": "Polygon",
-             "coordinates": [
-               [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0],
-                 [100.0, 1.0], [100.0, 0.0] ]
-               ]
-            },
-           "properties": {
-             "prop0": "value0",
-             "prop1": {"this": "that"}
-            }
-        }
-      ]
-  }
-  ```
-- [.small[GeoJSON Specification]](http://geojson.org/geojson-spec.html), [.small[geojson.io]](http://geojson.io/), [.small[Validate your geojson]](http://geojsonlint.com/), [.small[Mapshaper]](http://mapshaper.org/)
----
-
-## Map Tiles
-
-![](assets/images/tiles.png)
-
-- [How Web Maps Work](https://www.mapbox.com/help/how-web-maps-work/)
-- [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator) - Standard projection for map tiles
-- GeoJSON data coordinates should be in latitude, longitude (WGS 84)!!!
 
 ---
 
+## Preview
+
+- Open [final/index.html](final/index.html) file in new tab
+- Developer Tools - press Ctrl+Shift+I (or F12) in Chrome
+
+![](assets/images/final.png)
+
+---
+class: center
+
+<br/>
 # Leaflet
 
 ---
-
 ## Leaflet
 
 - Lightweight, simple & flexible open source JavaScript mapping library
@@ -379,7 +306,46 @@ name: codemin
 - Easy to extend with plugins
 
 ---
-name: nestedlist
+## Overlays - GeoJSON
+
+  ```javascript
+  var obj = 
+  { "type": "FeatureCollection",
+      "features": [
+        { "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [102.0, 0.5] },
+          "properties": {"prop0": "value0"}
+         },
+        { "type": "Feature",
+           "geometry": {
+             "type": "Polygon",
+             "coordinates": [
+               [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0],
+                 [100.0, 1.0], [100.0, 0.0] ]
+               ]
+            },
+           "properties": {
+             "prop0": "value0",
+             "prop1": {"this": "that"}
+            }
+        }
+      ]
+  }
+  ```
+- [GeoJSON Specification](http://geojson.org/geojson-spec.html), [Validate your geojson](http://geojsonlint.com/)
+- Convert from shapefile - [geojson.io](http://geojson.io/), [Mapshaper](http://mapshaper.org/), GIS
+- GeoJSON data coordinates should be in latitude, longitude (WGS 84)!!!
+---
+
+## Basemaps & Overlays - Map Tiles
+
+![](assets/images/Mapbox-example.jpg)
+
+- [How Web Maps Work](https://www.mapbox.com/help/how-web-maps-work/)
+- [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator) - Standard projection for map tiles
+
+
+---
 
 ## Exercise 01 - Make a map
 
@@ -396,7 +362,6 @@ name: nestedlist
 - Open `leaflet/01/index.js` in Code Editor. Copy code on next slide into js file. 
 
 ---
-name: codemin
 
 ## Exercise 01 - Make a map
 
@@ -897,6 +862,9 @@ Experiment with other turf functions. This [google search](https://www.google.co
 
 
 ---
+class: center
+
+<br>
 
 # D3
 

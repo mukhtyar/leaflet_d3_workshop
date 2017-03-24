@@ -1,11 +1,11 @@
-@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400);
 body {
-  font-family: Georgia, Times, 'Times New Roman', serif;
+  font-family: 'Droid Serif', Times, 'Times New Roman', serif;
   font-weight: normal;
   color:  #584f2f; 
 }
 h1, h2, h3, h4 {
-  font-weight: 500;
+  font-weight: 400;
   margin-bottom: 0;
   margin-top: 0;
   line-height: 1.2;
@@ -28,6 +28,9 @@ h1, h2, h3, h4 {
 .remark-slide-content  ul:after {
   margin: 0;
 }
+.remark-slide-content > ul li {
+  margin-bottom: 5px;
+}
 .footnote {
   position: absolute;
   bottom: 5em;
@@ -43,6 +46,9 @@ h1, h2, h3, h4 {
 .small {
   font-size: 0.7em;
 }
+.large { 
+  font-size: 2em; 
+}
 .em {
   background-color: #BABFD0;
 }
@@ -55,9 +61,9 @@ h1, h2, h3, h4 {
   margin: 0 auto;
   color: white;
 }
-li p { line-height: 1.25em; }
-.red { color: #fa0000; }
-.large { font-size: 2em; }
+.red { 
+  color: #fa0000; 
+}
 a, a > code {
   color: #0f4fc2;
   text-decoration: none;
